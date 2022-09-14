@@ -34,3 +34,4 @@ jobs:
           heroku_email: "villekarvonen1@gmail.com"
           healthcheck: "https://pokemonnit.herokuapp.com/health"
           checkstring: "ok"
+          rollbackonhealthcheckfailed: true
