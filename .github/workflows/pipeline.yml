@@ -31,6 +31,7 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        if: ${{ github.event.name == 'push'}}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "pokemonnit" #Must be unique in Heroku
@@ -38,3 +39,13 @@ jobs:
           healthcheck: "https://pokemonnit.herokuapp.com/health"
           checkstring: "ok"
           rollbackonhealthcheckfailed: true
+  tag_release:
+    needs: [simple_deployment_pipeline]        
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.36.0
+        if: ${{ github.event.name == 'push'}}
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
