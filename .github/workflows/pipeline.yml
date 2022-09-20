@@ -51,7 +51,7 @@ jobs:
         if: ${{ failure() }}
         with:
           severity: error
-          details: Build failed
+          details: Build failed ${{ github.sha }}
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
     needs: [simple_deployment_pipeline]        
