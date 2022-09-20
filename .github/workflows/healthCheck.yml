@@ -3,6 +3,8 @@ name: Health Check
 on:
   schedule:
     -cron: '15 9 * * *'
+    -cron: '15 10 * * *'
+
 
 jobs:
   healthcheck:
