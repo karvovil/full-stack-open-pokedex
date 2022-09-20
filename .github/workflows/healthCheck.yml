@@ -1,0 +1,14 @@
+on:
+  schedule:
+    -cron: '50 11 * * * *'
+
+jobs:
+  healthcheck:
+    runs-on: ubuntu-20.04
+    steps: 
+      - name: Check url
+        uses: jtalk/url-health-check-action@v2
+        with:
+          url: https://pokemonnit.herokuapp.com/health
+          max-attempts: 3
+          retry-delay: 15s
