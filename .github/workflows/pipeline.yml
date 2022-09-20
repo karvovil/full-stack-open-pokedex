@@ -44,14 +44,14 @@ jobs:
         if: ${{ success() && github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip') }}
         with:
           severity: info
-          details: New version deployed
+          description: New version deployed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Notify discord of FAILED build
         uses: rjstone/discord-webhook-notify@v1
         if: ${{ failure() }}
         with:
           severity: error
-          details: Build failed
+          description: Build failed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
     needs: [simple_deployment_pipeline]        
