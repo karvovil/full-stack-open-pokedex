@@ -66,6 +66,3 @@ jobs:
           severity: info
           details: New version deployed
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-  
-
-
